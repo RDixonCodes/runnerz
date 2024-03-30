@@ -19,5 +19,9 @@ public record Run(
         if(!completedOn.isAfter(startedOn)){
             throw new IllegalArgumentException("Completed On must be after Started On");
         }
+        //writing custom constraint
+//        if(title.isEmpty()){
+//            throw new IllegalArgumentException("Title can not be blank");
+//        }
     }
 }
