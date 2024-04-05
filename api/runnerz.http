@@ -2,7 +2,7 @@
 GET http://localhost:8080/api/runs
 
 ### Find Run By ID
-GET http://localhost:8080/api/runs/2
+GET http://localhost:8080/api/runs/11
 
 ### Find Run By ID that doesn't exist
 GET http://localhost:8080/api/runs/99
@@ -16,7 +16,7 @@ Content-Type: application/json
   "title": "Saturday Morning Run",
   "startedOn": "2024-02-10T15:00:12.49766",
   "completedOn": "2024-02-10T16:01:12.497678",
-  "miles": 6,
+  "miles": 3,
   "location": "OUTDOOR"
 }
 
@@ -25,7 +25,7 @@ POST http://localhost:8080/api/runs
 Content-Type: application/json
 
 {
-  "id": 11,
+  "id": 1,
   "title": "Saturday Morning Run",
   "startedOn": "2024-02-27T16:00:12.49766",
   "completedOn": "2024-02-27T15:01:12.497678",
@@ -34,7 +34,7 @@ Content-Type: application/json
 }
 
 ### Update an existing Run
-PUT http://localhost:8080/api/runs/11
+PUT http://localhost:8080/api/runs/1
 Content-Type: application/json
 
 {
@@ -47,4 +47,4 @@ Content-Type: application/json
 }
 
 ### Delete a Run
-DELETE http://localhost:8080/api/runs/11
+DELETE http://localhost:8080/api/runs/1

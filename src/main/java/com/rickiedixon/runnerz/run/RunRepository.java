@@ -38,8 +38,8 @@ public class RunRepository {
     }
 
     public void create(Run run) {
-        var updated = jdbcClient.sql("INSERT INTO Run(id, title, started_on, completed_on, miles, location values(?, ?, ?, ?, ?, ?)")
-                .params(List.of(run.id(), run.startedOn(), run.completedOn(), run.miles(), run.location().toString()))
+        var updated = jdbcClient.sql("INSERT INTO Run(id,title,started_on,completed_on,miles,location) values(?, ?, ?, ?, ?, ?)")
+                .params(List.of(run.id(),run.title(), run.startedOn(), run.completedOn(), run.miles(), run.location().toString()))
                 .update();
 
         Assert.state(updated == 1, "Failed to create run " + run.title());
