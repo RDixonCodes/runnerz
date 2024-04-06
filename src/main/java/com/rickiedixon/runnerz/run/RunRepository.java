@@ -66,7 +66,9 @@ public class RunRepository {
     }
 
     public void saveAll(List<Run> runs) {
-        runs.stream().forEach(this::create);
+//        runs.stream().forEach(this::create);
+        //refactor
+        runs.forEach(this::create);
     }
 
     public List<Run> findByLocation(String location) {
