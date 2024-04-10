@@ -62,13 +62,13 @@ public class RunRepository {
     }
 
     public int count() {
-        return jdbcClient.sql("select + from run").query().listOfRows().size();
+        return jdbcClient.sql("select * from run").query().listOfRows().size();
     }
 
     public void saveAll(List<Run> runs) {
-//        runs.stream().forEach(this::create);
+        runs.stream().forEach(this::create);
         //refactor
-        runs.forEach(this::create);
+//        runs.forEach(this::create);
     }
 
     public List<Run> findByLocation(String location) {

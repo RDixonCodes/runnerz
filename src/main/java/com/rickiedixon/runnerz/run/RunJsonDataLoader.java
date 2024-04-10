@@ -5,9 +5,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.asm.TypeReference;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.stereotype.Component;
 
 import java.io.InputStream;
 
+@Component
 public class RunJsonDataLoader implements CommandLineRunner{
 
     private static final Logger log = LoggerFactory.getLogger(RunJsonDataLoader.class);
@@ -16,7 +18,7 @@ public class RunJsonDataLoader implements CommandLineRunner{
 
     public RunJsonDataLoader(RunRepository runRepository, ObjectMapper objectMapper)  {
         this.runRepository = runRepository;
-        this.objectMapper = objectMapper;
+        this.objectMapper = objectMapper; //maps the json into objects... making list of runs
     }
 
     @Override
@@ -24,7 +26,7 @@ public class RunJsonDataLoader implements CommandLineRunner{
         if(runRepository.count() == 0) {
             try(InputStream inputStream = TypeReference.class.getResourceAsStream("/data/runs.json")) {
                 Runs allRuns = objectMapper.readValue(inputStream, Runs.class);
-                log.info("Reading {} runs from JSON data and saving to in-memory collection.", allRuns.runs().size());
+                log.info("Reading {} runs from JSON data and saving to a database.", allRuns.runs().size());
                 runRepository.saveAll(allRuns.runs());
             } catch (IndexOutOfBoundsException e) {
                 throw new RuntimeException("Failed to read JSON data", e);
