@@ -7,6 +7,7 @@ import org.springframework.asm.TypeReference;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import java.io.IOException;
 import java.io.InputStream;
 
 @Component
@@ -26,9 +27,9 @@ public class RunJsonDataLoader implements CommandLineRunner{
         if(runRepository.count() == 0) {
             try(InputStream inputStream = TypeReference.class.getResourceAsStream("/data/runs.json")) {
                 Runs allRuns = objectMapper.readValue(inputStream, Runs.class);
-                log.info("Reading {} runs from JSON data and saving to a database.", allRuns.runs().size());
+                log.info("Reading {} runs from JSON data and saving to in-memory collection.", allRuns.runs().size());
                 runRepository.saveAll(allRuns.runs());
-            } catch (IndexOutOfBoundsException e) {
+            } catch (IOException e) {
                 throw new RuntimeException("Failed to read JSON data", e);
             }
         }  else {
