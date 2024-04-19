@@ -1,10 +1,14 @@
 package com.rickiedixon.runnerz.run;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Version;
+
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Positive;
 import java.time.LocalDateTime;
 
 public record Run(
+        @Id
         Integer id,
         @NotEmpty
         String title,
@@ -12,7 +16,9 @@ public record Run(
         LocalDateTime completedOn,
         @Positive
         Integer miles,
-        Location location
+        Location location,
+        @Version
+        Integer version
 ) {
 
     public Run {
